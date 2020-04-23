@@ -42,7 +42,7 @@ window.addEvent('load', function(){
 	var camera = {gyroY: new THREE.Object3D(), gyroX: new THREE.Object3D(), shell: null, fp: null, tp1: null, tp2: null};
 	camera.shell = (function(THREE){
 		var g = new THREE.BoxGeometry(0.5, 2, 0.5);
-		var m = new THREE.MeshBasicMaterial({color: 0x000000, opacity:0, transparent:true});
+		var m = new THREE.MeshBasicMaterial({color: 0xff0000, opacity:0, transparent:true});
 		var c = new THREE.Mesh(g, m);
 		return c;
 	})(THREE);
