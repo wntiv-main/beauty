@@ -3,6 +3,10 @@ window.addEvent('load', function(){
 	var game = document.getElementById("game");
 	var focused = false;
 	var closable = true;
+	var reservedKeys = {
+		chars: ["F5"], 
+		codes: [116]
+	};
 	var player = {
 		inventory:{
 			inventory: [], 
@@ -162,7 +166,7 @@ window.addEvent('load', function(){
 	document.addEvent('fullscreenerror', function(){settings.fullscreen = false;settings.onchange(settings);});
 	document.addEvent('wheel', function(e){if(mouse.buttons[2]&&Math.abs(e.deltaY/100)>2)return;mouse.wheel+=e.deltaY/100;mouse.onchange({type:"wheelchange", detail:mouse, delta: e.deltaY/100});}); 
 	document.addEvent('contextmenu', 'preventDefault');
-	document.addEventListener('keydown', function(e){e=e||event;if(focused)e.preventDefault();});
+	document.addEventListener('keydown', function(e){e=e||event;if(focused&&(reservedKeys.chars.includes(e.char)||reservedKeys.chars.includes(e.key)||reservedKeys.codes.includes(e.charCode)||reservedKeys.codes.includes(e.keyCode)||reservedKeys.codes.includes(e.which)))e.preventDefault();});
 	document.addEventListener('mousedown', function(e){e=e||event;if(focused)e.preventDefault();});
 	window.addEvent('beforeunload', ()=>{if(!closable||focused)return 0;});
 	window.addEvent('keyup', function(e){
