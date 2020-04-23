@@ -222,3 +222,4 @@ window.addEvent('load', function(){
 	expose(camera.shell).as('camera.shell');
 	expose(player).as('player');
 });
+if(document.readyState=='interactive'||document.readyState=='complete')window.onload();
