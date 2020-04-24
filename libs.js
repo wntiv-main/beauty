@@ -309,7 +309,11 @@ function length(a){var r=0;for(var i in a){r++}return r;}
 		for(var i in this.loadedChunks){if(length(this.loadedChunks[i])>this.width)this.width = length(this.loadedChunks[i]);}
 	};
 	HeightMap.prototype.load = function(chunk, callback){
-		drawMap(10, 10, {data:this.data[chunk.y][chunk.x], width: 100, height:100}, callback, 1);
+		drawMap(10, 10, {data:this.data[chunk.y][chunk.x], width: 100, height:100}, function(mesh){
+			mesh.position.x = 10*chunk.x;
+			mesh.position.y = 10*chunk.y;
+			callback(mesh);
+		}, 1);
 	};
 	expose(HeightMap).as('RenderingInstance');
 })();
