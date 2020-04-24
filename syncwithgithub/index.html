@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://threejs.org/build/three.min.js"></script>
+        <script>
+            var x = new XMLHttpRequest(), a = 0;
+            x.onload = function(){
+                if(a==0){
+                    document.body.innerHTML = x.response;
+                    a++;
+                    x.open("GET", "https://raw.githubusercontent.com/wntiv-main/beauty/master/libs.js");
+                    x.send();
+                }else if(a==1){
+                    eval.apply(window, [x.response]);
+                    a++;
+                    x.open("GET", "https://raw.githubusercontent.com/wntiv-main/beauty/master/index.js");
+                    x.send();
+                }else if(a==2){
+                    eval.apply(window, [x.response]);
+                }
+            };
+            x.open("GET", "https://raw.githubusercontent.com/wntiv-main/beauty/master/index.snippet.html");
+            x.send();
+			</script>
+	</head>
+	<body>
+	</body>
+</html>
