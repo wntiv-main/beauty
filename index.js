@@ -220,10 +220,31 @@ window.addEvent('load', function(){
 	cube.position.y = -5;
 	scene.add(cube);
 
-	expose(settings).as('settings');
-	expose(mouse).as('mouse.info');
+	function ridgenoise(nx, ny) {return 2 * (0.5 - Math.abs(0.5 - noise.get(nx, ny)));}
+	function loadChunk(x, y, callback){
+		if(!loadChunk.renderingContext)loadChunk.renderingContext = new RenderingInstance();
+		var a = [];
+		for(var ny=0;ny<1;ny+=0.01){
+			for(var nx=0;nx<1;nx+=0.01){
+				e0 = 1    * ridgenoise(1 * nx + x, 1 * ny + y);
+				e1 = 0.5  * ridgenoise(2 * nx + x, 2 * ny + y) * e0;
+				e2 = 0.25 * ridgenoise(4 * nx + x, 4 * ny + y) * (e0+e1);
+				e = e0 + e1 + e2;
+				a.push(Math.pow(e, 2));
+			}
+		}
+		loadChunk.renderingContext.extend(a, {x: x, y: y});
+		loadChunk.renderingContext.load({x: x, y: y}, callback);
+	}
+	function renderChunk(mesh){scene.add(mesh);}
+	
+	
+	expose(settings).as('player.settings');
+	expose(mouse).as('player.mouse.info');
 	expose(scene).as('THREE.myScene');
-	expose(camera.shell).as('camera.shell');
+	expose(camera.shell).as('player.camera.shell');
 	expose(player).as('player');
+	expose(loadChunk).as('load');
+	expose(renderChunk).as('render');
 });
 if(document.readyState=='interactive'||document.readyState=='complete')window.onload();
