@@ -239,11 +239,11 @@ window.addEvent('load', function(){
 	function renderChunk(mesh){scene.add(mesh);}
 	
 	
+	expose(player).as('player');
 	expose(settings).as('player.settings');
 	expose(mouse).as('player.mouse.info');
 	expose(scene).as('THREE.myScene');
 	expose(camera.shell).as('player.camera.shell');
-	expose(player).as('player');
 	expose(loadChunk).as('load');
 	expose(renderChunk).as('render');
 });
