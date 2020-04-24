@@ -239,7 +239,7 @@ window.addEvent('load', function(){
 	function renderChunk(mesh){scene.add(mesh);}
 	
 	
-	expose(player).as('player');
+	expose(player).as('player.player');
 	expose(settings).as('player.settings');
 	expose(mouse).as('player.mouse.info');
 	expose(scene).as('THREE.myScene');
