@@ -313,7 +313,7 @@ function length(a){var r=0;for(var i in a){r++}return r;}
 			mesh.position.x = 10*chunk.x;
 			mesh.position.z = 10*chunk.y;
 			mesh.children[0].position.x = mesh.children[0].position.z = -5;
-			mesh.children[0].rotation.y = Math.PI/4*3;
+			mesh.children[0].rotation.y = Math.PI*1.5;
 			callback(mesh);
 		}, 1);
 	};
