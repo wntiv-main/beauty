@@ -312,7 +312,8 @@ function length(a){var r=0;for(var i in a){r++}return r;}
 		drawMap(10, 10, {data:this.data[chunk.y][chunk.x], width: 100, height:100}, function(mesh){
 			mesh.position.x = 10*chunk.x;
 			mesh.position.z = 10*chunk.y;
-			mesh.children[0].position.x = mesh.children[0].position.z = -5;
+			mesh.children[0].position.x = 5;
+			mesh.children[0].position.z = -5;
 			mesh.children[0].rotation.y = Math.PI*1.5;
 			callback(mesh);
 		}, 1);
